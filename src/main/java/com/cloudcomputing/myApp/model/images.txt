@@ -1,0 +1,8 @@
+Food: https://cdn-icons-png.flaticon.com/512/4080/4080032.png
+Wardrobe: https://cdn-icons-png.flaticon.com/512/5258/5258162.png
+Shoes: https://cdn-icons-png.freepik.com/512/2742/2742687.png
+Technology: https://cdn-icons-png.flaticon.com/512/2314/2314583.png
+Furniture: https://cdn-icons-png.flaticon.com/512/1010/1010331.png
+Cosmetic: https://cdn-icons-png.flaticon.com/512/194/194430.png
+Liquid: https://cdn4.iconfinder.com/data/icons/basic-ui-120/32/water-pure-aqua-liquid-drop-droplet-humidity-512.png
+Other: https://static.vecteezy.com/system/resources/previews/013/570/386/non_2x/hand-template-icon-with-cardboard-suitable-for-shipping-and-gifting-icons-illustration-free-vector.jpg

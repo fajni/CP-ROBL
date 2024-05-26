@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <title>ADD MODAL</title>
+</head>
+<body>
+
+    <!-- ADD Modal -->
+    <div class="container">
+        <div class="modal fade" id="myModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form th:action="@{/create}" th:object="${updateProduct}" method="POST">
+                            <div class="form-group">
+                                <label>Enter Title:</label>
+                                <input type="text" name="title" th:field="*{title}" placeholder="Enter product title" class="form-control text-danger">
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Price:</label>
+                                <input type="number" name="price" th:field="*{price}" placeholder="Enter product price" class="form-control text-danger">
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Number:</label>
+                                <input type="number" name="number" th:field="*{number}" placeholder="Enter number of products" class="form-control text-danger">
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Description:</label>
+                                <input type="text" name="description" th:field="*{description}" placeholder="Enter product description" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Choose Type:</label><br/>
+                                <select name="type" id="type" class="form-control" aria-label="Default select example">
+                                    <option value="Food">Food</option>
+                                    <option value="Wardrobe">Wardrobe</option>
+                                    <option value="Shoes">Shoes</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Furniture">Furniture</option>
+                                    <option value="Cosmetic">Cosmetic</option>
+                                    <option value="Liquid">Liquid</option>
+                                    <option value="Other" selected>Other</option>
+                                </select>
+                            </div>
+                            <hr/>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">ADD product</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

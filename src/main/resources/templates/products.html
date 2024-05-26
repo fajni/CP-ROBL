@@ -11,23 +11,7 @@
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-light bg-light">
-        <div class="container justify-content-start">
-            <a class="navbar-brand">
-                <img th:src="@{/img/favicon.ico}" width="30" height="30" class="d-inline-block align-top rounded-circle" alt="">
-                Spring Boot
-            </a>&VerticalLine;
-            <a class="navbar-brand">
-                <img th:src="@{https://www.thymeleaf.org/images/thymeleaf.png}" width="30" height="30" class="d-inline-block align-top rounded-circle" alt="">
-                Thymeleaf
-            </a>&VerticalLine;
-            <a class="navbar-brand">
-                <img th:src="@{https://www.w3schools.com/whatis/img_bootstrap.png}" width="30" height="30" class="d-inline-block align-top rounded-circle" alt="">
-                Bootstrap
-            </a>
-        </div>
-    </nav>
+    <div th:replace="~{fragments/navbar.html :: nav}"></div>
 
     <div class="container">
         <br><h1 class="text-center">PRODUCTS</h1>
@@ -38,6 +22,7 @@
     <div class="container">
         <!--<a th:href="@{/create_pc}" class="btn btn-primary text-light">ADD PRODUCT</a>-->
         <button type="button" class="btn btn-primary text-light btn-lg" data-toggle="modal" data-target="#myModalAdd">ADD PRODUCT</button>
+        <div th:replace="~{fragments/sortButton.html :: div}"></div>
     </div>
 
     <br/>
@@ -69,7 +54,6 @@
                         <a th:href="@{/delete/{id}(id=${product.id})}" class="btn btn-danger text-light">REMOVE</a>
                     </td>
                 </tr>
-
             </tbody>
 
         </table>
@@ -78,117 +62,11 @@
 
     </div>
 
-    <!-- ADD Modal -->
-    <div class="container">
-        <div class="modal fade" id="myModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <form th:action="@{/create}" th:object="${updateProduct}" method="POST">
-                            <div class="form-group">
-                                <label>Enter Title:</label>
-                                <input type="text" name="title" th:field="*{title}" placeholder="Enter product title" class="form-control text-danger">
-                            </div>
-                            <div class="form-group">
-                                <label>Enter Price:</label>
-                                <input type="number" name="price" th:field="*{price}" placeholder="Enter product price" class="form-control text-danger">
-                            </div>
-                            <div class="form-group">
-                                <label>Enter Number:</label>
-                                <input type="number" name="number" th:field="*{number}" placeholder="Enter number of products" class="form-control text-danger">
-                            </div>
-                            <div class="form-group">
-                                <label>Enter Description:</label>
-                                <input type="text" name="description" th:field="*{description}" placeholder="Enter product description" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Choose Type:</label><br/>
-                                <select name="type" id="type" class="form-control" aria-label="Default select example">
-                                    <option value="Food">Food</option>
-                                    <option value="Wardrobe">Wardrobe</option>
-                                    <option value="Shoes">Shoes</option>
-                                    <option value="Technology">Technology</option>
-                                    <option value="Furniture">Furniture</option>
-                                    <option value="Cosmetic">Cosmetic</option>
-                                    <option value="Liquid">Liquid</option>
-                                    <option value="Other" selected>Other</option>
-                                </select>
-                            </div>
-                            <hr/>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">ADD product</button>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- UPDATE Modal -->
-    <div class="container">
-        <div class="modal fade" id="myModalUpdate" tabindex="-1" aria-labelledby="exampleModalLabelUpdate" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabelUpdate">Update Product</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <form method="GET" id="updateForm" th:action="@{/update(id=${id}, title=${title}, price=${price}, number=${number}, description=${description}, updateType=${updateType})}">
-                            <div class="form-group">
-                                <label>Id</label>
-                                <input type="text" id="updateId" name="id" class="form-control text-danger" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label>Update Title:</label>
-                                <input type="text" id="updateTitle" name="title" placeholder="Update product title" class="form-control text-danger">
-                            </div>
-                            <div class="form-group">
-                                <label>Update Price:</label>
-                                <input type="number" id="updatePrice" name="price" placeholder="Update product price" class="form-control text-danger">
-                            </div>
-                            <div class="form-group">
-                                <label>Update Number:</label>
-                                <input type="number" id="updateNumber" name="number" placeholder="Update number of products" class="form-control text-danger">
-                            </div>
-                            <div class="form-group">
-                                <label>Update Description:</label>
-                                <input type="text" id="updateDescription" name="description" placeholder="Update product description" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Update Type:</label><br/>
-                                <select name="type" id="updateType" class="form-control" aria-label="Default select example">
-                                    <option value="Food">Food</option>
-                                    <option value="Wardrobe">Wardrobe</option>
-                                    <option value="Shoes">Shoes</option>
-                                    <option value="Technology">Technology</option>
-                                    <option value="Furniture">Furniture</option>
-                                    <option value="Cosmetic">Cosmetic</option>
-                                    <option value="Liquid">Liquid</option>
-                                    <option value="Other" selected>Other</option>
-                                </select>
-                            </div>
-                            <hr/>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-warning">UPDATE product</button>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div th:replace="~{fragments/addModal.html :: div}"></div>
+    <div th:replace="~{fragments/updateModal.html :: div}"></div>
+    <div th:replace = "~{fragments/pagination.html :: div}"></div>
+    <div th:replace="~{fragments/notification.html :: div}"></div>
+    <div th:replace = "~{fragments/footer.html :: footer}"></div>
 
     <script type="text/javascript" th:src="@{/js/script.js}"></script>
 

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!-- UPDATE Modal -->
+    <div class="container">
+        <div class="modal fade" id="myModalUpdate" tabindex="-1" aria-labelledby="exampleModalLabelUpdate" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabelUpdate">Update Product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form method="GET" id="updateForm" th:action="@{/update(id=${id}, title=${title}, price=${price}, number=${number}, description=${description}, updateType=${updateType})}">
+                            <div class="form-group">
+                                <label>Id</label>
+                                <input type="text" id="updateId" name="id" class="form-control text-danger" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Update Title:</label>
+                                <input type="text" id="updateTitle" name="title" placeholder="Update product title" class="form-control text-danger">
+                            </div>
+                            <div class="form-group">
+                                <label>Update Price:</label>
+                                <input type="number" id="updatePrice" name="price" placeholder="Update product price" class="form-control text-danger">
+                            </div>
+                            <div class="form-group">
+                                <label>Update Number:</label>
+                                <input type="number" id="updateNumber" name="number" placeholder="Update number of products" class="form-control text-danger">
+                            </div>
+                            <div class="form-group">
+                                <label>Update Description:</label>
+                                <input type="text" id="updateDescription" name="description" placeholder="Update product description" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Update Type:</label><br/>
+                                <select name="type" id="updateType" class="form-control" aria-label="Default select example">
+                                    <option value="Food">Food</option>
+                                    <option value="Wardrobe">Wardrobe</option>
+                                    <option value="Shoes">Shoes</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Furniture">Furniture</option>
+                                    <option value="Cosmetic">Cosmetic</option>
+                                    <option value="Liquid">Liquid</option>
+                                    <option value="Other" selected>Other</option>
+                                </select>
+                            </div>
+                            <hr/>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-warning">UPDATE product</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

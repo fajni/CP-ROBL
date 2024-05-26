@@ -1,3 +1,9 @@
+$(document).ready(function(){
+    $("#add").fadeOut(5000);
+    $("#update").fadeOut(5000);
+    $("#delete").fadeOut(5000);
+});
+
 function getProduct(button, type){
 
     const row = button.parentNode.parentNode;

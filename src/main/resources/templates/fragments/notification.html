@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> <!--FadeOut Notifications-->
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <div class="container">
+        <div th:if="${add}" id="add" class="alert alert-success text-center">
+            <b>[[${add}]]</b> <!--HTML ADD NOTIFICATION-->
+        </div>
+
+        <div th:if="${update}" id="update" class="alert alert-warning text-center">
+            <b>[[${update}]]</b> <!--HTML UPDATE NOTIFICATION-->
+        </div>
+
+        <div th:if="${delete}" id="delete" class="alert alert-danger text-center">
+            <b>[[${delete}]]</b> <!--HTML DELETE NOTIFICATION-->
+        </div>
+    </div>
+
+</body>
+</html>

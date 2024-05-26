@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <div class="d-flex justify-content-center">
+
+        <nav aria-label="...">
+            Total products: <b>[[${totalItems}]]</b> &VerticalLine; Page <b>[[${currentPage}]]</b> of <b>[[${totalPages}]]</b>
+            <ul class="pagination justify-content-center">
+                <!-- FIRST PAGE -->
+                <li class="page-item">
+                    <a th:if="${currentPage > 1}" th:href="@{/page/1}" class="page-link">First</a>
+                    <span th:unless="${currentPage > 1}" class="page-link">First</span>
+                </li>
+
+                <!-- PREVIOUS PAGE -->
+                <li class="page-item">
+                    <a th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1}}" class="page-link">Previous</a>
+                    <span th:unless="${currentPage > 1}" class="page-link">Previous</span>
+                </li>
+
+                <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
+                        <a th:href="@{'/page/'} + ${i}" class="page-link">[[${i}]]</a>
+                </li>
+
+                <li class="page-item">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}" class="page-link">Next</a>
+                    <span th:unless = "${currentPage < totalPages}" class="page-link">Next</span>
+                </li>
+
+                <li class="page-item">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}" class="page-link">Last</a>
+                    <span th:unless = "${currentPage < totalPages}" class="page-link">Last</span>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

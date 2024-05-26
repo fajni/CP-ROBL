@@ -2,13 +2,21 @@ package com.cloudcomputing.myApp.Service;
 
 import com.cloudcomputing.myApp.model.Product;
 import com.cloudcomputing.myApp.repository.ProductRepository;
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 @Service
 public class ProductService {
@@ -75,5 +83,33 @@ public class ProductService {
         optionalProduct.get().setImageUrl(optionalProduct.get().getType());
 
         return optionalProduct;
+    }
+
+    /*
+    // CREATE 200 RANDOM PRODUCTS
+    @PostConstruct
+    public void initDB(){
+        List<Product> products = LongStream.rangeClosed(1, 200)
+                .mapToObj(i -> new Product("Product" + i, new Random().nextDouble(100), new Random().nextInt(500), "Other", "/"))
+                .collect(Collectors.toList());
+        productRepository.saveAll(products);
+    }
+    */
+
+    public List<Product> getProductsWithSorting(String field){
+        return productRepository.findAll(Sort.by(field));
+    }
+
+    public Page<Product> getProductsWithPagination(int offset, int pageSize){
+        return productRepository.findAll(PageRequest.of(offset, pageSize));
+    }
+
+    public List<Product> getProductsWithSortingAndPagination(String field, int offset, int pageSize){
+        return productRepository.findAll(PageRequest.of(offset,pageSize).withSort(Sort.by(field))).toList();
+    }
+
+    public Page<Product> getPage(int pageNumber){
+        Pageable pageable = PageRequest.of(pageNumber - 1, 5);
+        return productRepository.findAll(pageable);
     }
 }

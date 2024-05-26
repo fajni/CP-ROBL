@@ -52,7 +52,7 @@ public class Product {
                 "IMAGE URL: " + imageUrl + "\n";
     }
 
-    public String getImageUrl(String type){
+    public String getImageUrl(String type) {
         HashMap<String, String> urls = new HashMap<>();
 
         File imageUrls = new File("src/main/java/com/cloudcomputing/myApp/model/images.txt");
@@ -60,27 +60,28 @@ public class Product {
         try {
             Scanner reader = new Scanner(imageUrls);
 
-            while (reader.hasNextLine()){
+            while (reader.hasNextLine()) {
 
                 String line = reader.nextLine();
                 int index = line.indexOf(":");
-                String value = line.substring(index+1).trim();
+                String value = line.substring(index + 1).trim();
                 String key = line.substring(0, index).trim();
 
                 urls.put(key, value);
             }
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        if(!urls.containsKey(type)){
+        if (!urls.containsKey(type)) {
             return urls.get("Other");
         }
 
         return urls.get(type);
     }
 
-    public Product(){ }
+    public Product() {
+    }
 
     public Product(Long id, String title, double price, int number, String description, String type, String imageUrl) {
         this.id = id;
@@ -129,7 +130,7 @@ public class Product {
         return description;
     }
 
-    public String getType(){
+    public String getType() {
         return type;
     }
 
@@ -146,18 +147,25 @@ public class Product {
     }
 
     public void setPrice(double price) {
+
         this.price = price;
+
+        if (price < 0)
+            this.price = 0;
     }
 
     public void setNumber(int number) {
         this.number = number;
+
+        if (number < 0)
+            this.number = 0;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setType(String type){
+    public void setType(String type) {
         this.type = type;
     }
 

@@ -16,10 +16,10 @@
         <label class="h5">Sort By:</label><br/>
         <select name="sort" id="sort" class="form-control" onchange="window.location.href=this.value;">
             <option value="" disabled selected>Select an option</option>
-            <option th:value="@{'/page/'+${currentPage}+'/id'}">ID</option>
-            <option th:value="@{'/page/'+${currentPage}+'/title'}">Title</option>
-            <option th:value="@{'/page/'+${currentPage}+'/price'}">Price</option>
-            <option th:value="@{'/page/'+${currentPage}+'/number'}">Number</option>
+            <option th:value="@{'/sort/'+${currentPage}+'/id'}">ID</option>
+            <option th:value="@{'/sort/'+${currentPage}+'/title'}">Title</option>
+            <option th:value="@{'/sort/'+${currentPage}+'/price'}">Price</option>
+            <option th:value="@{'/sort/'+${currentPage}+'/number'}">Number</option>
             <option value="/" class="font-weight-bold">None</option>
         </select>
     </div>

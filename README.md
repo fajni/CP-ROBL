@@ -6,7 +6,12 @@ Frontend is made by using __Thymeleaf__ with __Bootstrap__ and modals. Full proj
 
 Database: __MySQL__
 
-<img src = "images/frontend.gif" width="1000"/>
+<details>
+    <summary>CLICK FOR PREVIEW</summary>
+    <div align="center">
+        <img src = "images/preview.gif" width="600"/>
+    </div>
+</details>
 
 <hr/>
 

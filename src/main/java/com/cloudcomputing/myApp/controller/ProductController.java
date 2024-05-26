@@ -46,7 +46,7 @@ public class ProductController {
     }
 
     // TODO: sorting
-    @GetMapping("/page/{pageNumber}/{field}")
+    @GetMapping("/sort/{pageNumber}/{field}")
     public ModelAndView getPageSort(@PathVariable("pageNumber") int currentPage, @PathVariable("field") String field){
         ModelAndView model = new ModelAndView("products");
         model.addObject("product", new Product());
@@ -55,7 +55,9 @@ public class ProductController {
         Page<Product> page = productService.getPage(currentPage);
         int totalPages = page.getTotalPages();
         long totalItems = page.getTotalElements();
-        List<Product> products = productService.getProductsWithSortingAndPagination(field, currentPage, 5);
+        List<Product> products = productService.getProductsWithSortingAndPagination(field, currentPage - 1, 5);
+
+        products.forEach(System.out::println);
 
         model.addObject("products", products);
         model.addObject("currentPage", currentPage);
@@ -81,15 +83,6 @@ public class ProductController {
         model.addObject("totalPages", totalPages);
         model.addObject("totalItems", totalItems);
 
-        return model;
-    }
-
-    @GetMapping("/pagination/{offset}/{pageSize}")
-    public ModelAndView getAllProductsPagination(@PathVariable int offset, @PathVariable int pageSize){
-        ModelAndView model = new ModelAndView("products");
-        model.addObject("products", productService.getProductsWithPagination(offset, pageSize));
-        model.addObject("product", new Product());
-        model.addObject("updateProduct", new Product());
         return model;
     }
 

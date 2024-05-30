@@ -53,12 +53,13 @@ public class Product {
     }
 
     public String getImageUrl(String type) {
+        ClassLoader classLoader = Product.class.getClassLoader();
         HashMap<String, String> urls = new HashMap<>();
 
-        File imageUrls = new File("src/main/java/com/cloudcomputing/myApp/model/images.txt");
-        System.out.println(imageUrls.exists());
         try {
-            Scanner reader = new Scanner(imageUrls);
+
+            File images = new File(classLoader.getResource("images.txt").toURI());
+            Scanner reader = new Scanner(images);
 
             while (reader.hasNextLine()) {
 
@@ -69,11 +70,11 @@ public class Product {
 
                 urls.put(key, value);
             }
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if (!urls.containsKey(type)) {
+        if (!urls.containsKey(type)){
             return urls.get("Other");
         }
 
